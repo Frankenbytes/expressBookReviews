@@ -3,7 +3,11 @@ const jwt = require('jsonwebtoken');
 let books = require("./booksdb.js");
 const regd_users = express.Router();
 
-let users = [];
+let users = [
+    { username: "testUser1", password: "password123" },
+    { username: "testUser2", password: "mypassword" },
+    { username: "admin", password: "admin123" }
+];
 
 const isValid = (username)=>{ //returns boolean
   let userswithsamename = users.filter((user)=>{
@@ -50,6 +54,40 @@ regd_users.post("/login", (req,res) => {
     return res.status(208).json({message: "Invalid Login. Check username and password"});
   }
 });
+
+// Task 7
+// registered users login
+//regd_users.post("/login", (req, res) => {
+   // const { username, password } = req.query; // req.body statt req.query
+
+    // Überprüfe, ob beide Anmeldedaten vorhanden sind
+   // if (!username || !password) {
+  //      return res.status(400).json({ message: "Username and password are required." });
+   // }
+
+    // Überprüfe, ob der Benutzer authentifiziert werden kann
+   // if (authenticatedUser(username, password)) {
+        // JWT-Token erstellen
+      //  let accessToken = jwt.sign(
+     //       { username }, // Füge den Benutzernamen ins Token hinzu, nicht das Passwort
+       //     'access', 
+         //   { expiresIn: 60 * 60 } // Token ist für 1 Stunde gültig
+        //);
+
+        // Token in der Session speichern
+        //req.session.authorization = {
+        //    accessToken
+        //};
+
+        //return res.status(200).json({ message: "User successfully logged in", accessToken });
+    //} else {
+      //  return res.status(401).json({ message: "Invalid Login. Check username and password." });
+    //}
+//});
+
+
+
+
 
 // Task 8
 // Add book review
